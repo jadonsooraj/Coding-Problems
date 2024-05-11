@@ -5,7 +5,7 @@ class Solution1 {
         // code here
         long long gcd=1;
         
-        for(int i=1;i<min(A,B);i++){
+        for(int i=1;i<=min(A,B);i++){
             if((A%i==0)&&(B%i==0)) gcd=i;
         }
         
