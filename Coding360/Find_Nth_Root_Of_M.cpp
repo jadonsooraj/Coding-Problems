@@ -22,3 +22,18 @@ int NthRoot(int n, int m) {
   }
   return -1;
 }
+
+//using pow(x,n) 
+int NthRoot(int n, int m) {
+  // Write your code here.
+  int left=1, right=m/n;
+
+  while(left<=right){
+    int mid=(left+right)/2;
+
+    if(pow(mid,n)==m) return mid;
+    else if(pow(mid,n)<m) left=mid+1;
+    else right =mid-1;
+  }
+  return -1;
+}
