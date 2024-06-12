@@ -1,18 +1,29 @@
 class Solution {
 public:
     vector<int> relativeSortArray(vector<int>& arr1, vector<int>& arr2) {
-        unordered_map<int, int> pos;
-        for (int i = 0; i < arr2.size(); ++i) {
-            pos[arr2[i]] = i;
+        //declaring a hash array of maximum size of arr1, given in qstn
+        vector<int> hash(1001,0);
+
+        //masking in th hash array
+        for(int num: arr1) hash[num]++;
+
+        int pos=0;  //pointer to point where element will be filled in arr1;
+        //iterating through arr2 to fill in order in arr1
+        for(int i: arr2){
+            while(hash[i]>0){
+                arr1[pos]=i;
+                hash[i]--;
+                pos++;
+            }
         }
-        vector<pair<int, int>> arr;
-        for (int i = 0; i < arr1.size(); ++i) {
-            int j = pos.count(arr1[i]) ? pos[arr1[i]] : arr2.size();
-            arr.emplace_back(j, arr1[i]);
-        }
-        sort(arr.begin(), arr.end());
-        for (int i = 0; i < arr1.size(); ++i) {
-            arr1[i] = arr[i].second;
+
+        //filling remaining elements
+        for(int i=0;i<hash.size();i++){
+            while(hash[i]>0){
+                arr1[pos]=i;
+                hash[i]--;
+                pos++;
+            }
         }
         return arr1;
     }
