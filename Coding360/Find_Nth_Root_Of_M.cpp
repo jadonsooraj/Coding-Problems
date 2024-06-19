@@ -1,3 +1,4 @@
+// M-1 brute force
 int func(int mid, int n, int m){
   long long ans=1;
   for(int i=1;i<=n;i++){
@@ -23,7 +24,7 @@ int NthRoot(int n, int m) {
   return -1;
 }
 
-//using pow(x,n) 
+// M-2 using pow(x,n) 
 int NthRoot(int n, int m) {
   // Write your code here.
   int left=1, right=m/n;
