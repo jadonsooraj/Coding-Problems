@@ -17,3 +17,5 @@ public:
         return {-1,-1};
     }
 };
+
+//M-2 using hash and target-arr[i]
