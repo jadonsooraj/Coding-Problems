@@ -1,17 +1,34 @@
 class Solution {
 public:
     int longestPalindrome(string s) {
-         int cnt[128]{};
-        for (char& c : s) {
-            ++cnt[c];
+//Store frequency of characters
+        vector<int> lower(26,0);
+        vector<int> upper(26,0);
+        for(int i=0;i<s.size();i++){
+            if(s[i]>='a') lower[s[i]-'a']++;
+
+            else upper[s[i]-'A']++;
         }
-        int ans = 0;
-        for (int v : cnt) {
-            ans += v - (v & 1);
-            if (ans % 2 == 0 && v % 2 == 1) {
-                ++ans;
+
+        int count=0;
+        bool odd=0;
+
+        for(int i=0; i<26; i++){
+            //lower
+            if(lower[i]%2==0) count+=lower[i];
+            else{
+                count+=lower[i]-1;
+                odd=1;
+            }
+
+            //upper 
+            if(upper[i]%2==0) count+=upper[i];
+            else{
+                count+=upper[i]-1;
+                odd=1;
             }
         }
-        return ans;
+
+        return count+odd;
     }
 };
