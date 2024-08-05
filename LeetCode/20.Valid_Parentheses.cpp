@@ -17,3 +17,25 @@ public:
         return (l == '(' && r == ')') || (l == '[' && r == ']') || (l == '{' && r == '}');
     }
 };
+
+//USING STACK
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char> st;
+
+        for(char c:s){
+            if(c=='(' || c=='[' || c=='{') st.push(c); 
+            
+            else if(st.empty() || !match(c,st.top())) return false;
+             
+            else st.pop();
+            
+        }
+        return st.empty();
+    }
+
+    bool match(char c, char ch){
+        return ( c==')' && ch=='(' )  ||  ( c==']' && ch=='[' )  ||  ( c=='}' && ch=='{' );
+    }
+};
