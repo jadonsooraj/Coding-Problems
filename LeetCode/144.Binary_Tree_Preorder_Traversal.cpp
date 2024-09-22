@@ -11,16 +11,18 @@
  */
 class Solution {
 public:
-    void traverse(TreeNode* root, vector<int>& ans){
+    void preTraverse(TreeNode * root, vector<int>& ans){
         TreeNode* temp=root;
+
         if(temp==nullptr) return;
-        traverse(temp->left,ans);
-        traverse(temp->right,ans);
         ans.push_back(temp->val);
+        preTraverse(temp->left,ans);
+        preTraverse(temp->right,ans);
     }
-    vector<int> postorderTraversal(TreeNode* root) {
+    vector<int> preorderTraversal(TreeNode* root) {
         vector<int> ans;
-        traverse(root,ans);
+        preTraverse(root,ans);
+        
         return ans;
     }
 };
